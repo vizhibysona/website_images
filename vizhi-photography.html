@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizhi by Sona - Film Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --dark-grey: #2a2a2a;
+            --silver: #c0c0c0;
+            --light-silver: #e8e8e8;
+            --white: #f5f5f5;
+            --accent-silver: #a8a8a8;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            padding: 80px 40px 60px;
+            background: var(--black);
+            border-bottom: 1px solid var(--dark-grey);
+            text-align: center;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animated film grain effect */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(192, 192, 192, 0.03) 2px, rgba(192, 192, 192, 0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(192, 192, 192, 0.03) 2px, rgba(192, 192, 192, 0.03) 4px);
+            opacity: 0.4;
+            animation: grainShift 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes grainShift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(2px, 2px); }
+        }
+
+        /* Floating light orbs */
+        header::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(192, 192, 192, 0.18) 0%, rgba(192, 192, 192, 0.10) 40%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation: floatOrb 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+            33% { transform: translate(-100px, 150px) scale(1.2); opacity: 0.9; }
+            66% { transform: translate(50px, 100px) scale(0.9); opacity: 0.8; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Decorative film strips */
+        .film-decoration {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            top: 20px;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+            opacity: 0.15;
+        }
+
+        .film-decoration::before,
+        .film-decoration::after {
+            content: '';
+            width: 60%;
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--silver) 0px,
+                var(--silver) 10px,
+                transparent 10px,
+                transparent 15px
+            );
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Letter animation with stagger */
+        h1::before {
+            content: 'VIZHI BY SONA';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--white) 0%, var(--silver) 30%, var(--light-silver) 60%, var(--white) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: shimmerFlow 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmerFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Accent lines around title */
+        .title-accent {
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-accent::before,
+        .title-accent::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--silver), transparent);
+            top: 50%;
+            animation: accentPulse 4s ease-in-out infinite;
+        }
+
+        .title-accent::before {
+            left: -120px;
+        }
+
+        .title-accent::after {
+            right: -120px;
+        }
+
+        @keyframes accentPulse {
+            0%, 100% { opacity: 0.3; width: 80px; }
+            50% { opacity: 0.8; width: 100px; }
+        }
+
+        .instagram-link {
+            display: inline-block;
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            transition: all 0.4s ease;
+            padding: 12px 30px;
+            border: 1px solid var(--dark-grey);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .instagram-link:hover::before {
+            left: 100%;
+        }
+
+        .instagram-link:hover {
+            color: var(--white);
+            border-color: var(--silver);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(192, 192, 192, 0.15);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 220px;
+            background: var(--charcoal);
+            border-right: 1px solid var(--dark-grey);
+            padding: 40px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--silver);
+            margin-bottom: 25px;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 18px;
+        }
+
+        .nav-links a {
+            color: var(--accent-silver);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 8px 0;
+            border-left: 2px solid transparent;
+            padding-left: 15px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+            border-left-color: var(--silver);
+            padding-left: 20px;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: var(--charcoal);
+            border: 1px solid var(--dark-grey);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--silver);
+            box-shadow: 0 20px 40px rgba(192, 192, 192, 0.1);
+        }
+
+        .gallery-item[style*="cursor: default"]:hover {
+            transform: none;
+            border-color: var(--dark-grey);
+            box-shadow: none;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            padding: 30px;
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%) contrast(1.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(100%) contrast(1.2) brightness(1.05);
+        }
+
+        .item-details {
+            padding: 25px 30px;
+            background: var(--charcoal);
+            border-top: 1px solid var(--dark-grey);
+        }
+
+        .item-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .item-price {
+            font-size: 1rem;
+            color: var(--silver);
+            letter-spacing: 0.05em;
+        }
+
+        /* Product Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 60px;
+            background: var(--charcoal);
+            border: 1px solid var(--dark-grey);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--silver);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .close-modal:hover {
+            color: var(--white);
+            border-color: var(--silver);
+            background: rgba(192, 192, 192, 0.05);
+        }
+
+        .modal-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+        }
+
+        .modal-image {
+            background: var(--black);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--dark-grey);
+        }
+
+        .modal-image img {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(100%) contrast(1.1);
+        }
+
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .modal-price {
+            font-size: 1.5rem;
+            color: var(--silver);
+            letter-spacing: 0.05em;
+        }
+
+        .modal-description {
+            color: var(--accent-silver);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .size-selector {
+            margin-top: 10px;
+        }
+
+        .size-selector label {
+            display: block;
+            color: var(--silver);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 12px 24px;
+            background: var(--dark-grey);
+            border: 1px solid var(--dark-grey);
+            color: var(--silver);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .size-option:hover {
+            border-color: var(--silver);
+            background: rgba(192, 192, 192, 0.05);
+        }
+
+        .size-option.selected {
+            background: var(--silver);
+            color: var(--black);
+            border-color: var(--silver);
+        }
+
+        .purchase-button {
+            padding: 18px 40px;
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        .purchase-button:hover {
+            background: var(--silver);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2);
+        }
+
+        /* Inquiry Button */
+        .inquiry-button {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: var(--silver);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(192, 192, 192, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .inquiry-button:hover {
+            transform: scale(1.1);
+            background: var(--white);
+            box-shadow: 0 15px 40px rgba(192, 192, 192, 0.4);
+        }
+
+        .inquiry-button svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--black);
+        }
+
+        /* Inquiry Modal */
+        .inquiry-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inquiry-modal.active {
+            display: flex;
+        }
+
+        .inquiry-content {
+            background: var(--charcoal);
+            border: 1px solid var(--dark-grey);
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+
+        .inquiry-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--silver);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: var(--dark-grey);
+            border: 1px solid var(--dark-grey);
+            color: var(--white);
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--silver);
+            background: rgba(192, 192, 192, 0.05);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Raleway', sans-serif;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background: var(--silver);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .modal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 30px 20px;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 20px;
+                overflow-x: auto;
+            }
+
+            .nav-links li {
+                margin-bottom: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .modal-content {
+                padding: 30px;
+                margin: 30px 20px;
+            }
+
+            .inquiry-content {
+                padding: 30px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--charcoal);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--dark-grey);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--silver);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="film-decoration"></div>
+        <div class="header-content">
+            <div class="title-accent">
+                <h1>VIZHI BY SONA</h1>
+            </div>
+            <a href="https://www.instagram.com/sona_film.bw/" class="instagram-link" target="_blank">@SONA_FILM.BW</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <nav class="sidebar">
+            <div class="nav-title">Collections</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active" data-collection="all">All Prints</a></li>
+                <li><a href="#" data-collection="noshoes">No Shoes Allowed</a></li>
+                <li><a href="#" data-collection="aditicollab">@artzbydeetz x @sona_film.bw</a></li>
+                <li><a href="#" data-collection="shreecollab">@studiokale x @sona_film.bw</a></li>
+                <li><a href="#" data-collection="misc">Other Works</a></li>
+                <li><a href="#" data-collection="dance">Dance Shoots</a></li>
+                <li><a href="#" data-collection="private">Private Shoots</a></li>
+            </ul>
+        </nav>
+
+        <div class="gallery-container">
+            <div class="gallery-grid" id="gallery">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-layout">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-details">
+                    <div>
+                        <h2 class="modal-title" id="modalTitle"></h2>
+                        <div class="modal-price" id="modalPrice"></div>
+                    </div>
+                    <p class="modal-description" id="modalDescription"></p>
+                    <div class="size-selector">
+                        <label>Select Size:</label>
+                        <div class="size-options" id="sizeOptions">
+                            <div class="size-option" onclick="selectSize(this)">8" × 10"</div>
+                            <div class="size-option" onclick="selectSize(this)">11" × 14"</div>
+                            <div class="size-option" onclick="selectSize(this)">16" × 20"</div>
+                            <div class="size-option" onclick="selectSize(this)">20" × 24"</div>
+                        </div>
+                    </div>
+                    <button class="purchase-button" onclick="handlePurchase()">PURCHASE PRINT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inquiry Button -->
+    <div class="inquiry-button" onclick="openInquiry()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+        </svg>
+    </div>
+
+    <!-- Inquiry Modal -->
+    <div class="inquiry-modal" id="inquiryModal">
+        <div class="inquiry-content">
+            <span class="close-modal" onclick="closeInquiry()">&times;</span>
+            <h2 class="inquiry-title">Inquiries</h2>
+            <form id="inquiryForm" onsubmit="handleInquiry(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Inquiry Type</label>
+                    <select name="inquiryType" required>
+                        <option value="">Select...</option>
+                        <option value="photoshoot">Photoshoot Booking</option>
+                        <option value="custom">Custom Print</option>
+                        <option value="gallery">Gallery Exhibition</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">SEND INQUIRY</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample gallery data - Replace with your actual photos and information
+        const galleryData = [
+            {
+                id: 1,
+                title: "Pair I-I",
+                price: "$30",
+                image: "images/pair1.jpg",
+                description: "A contemplative portrait capturing the interplay of light and shadow. Shot on Ilford HP5 Plus 400, this print showcases the timeless quality of black and white film photography.",
+                collection: "shreecollab"
+            },
+            {
+                id: 2,
+                title: "Pair I-II",
+                price: "$30",
+                image: "images/pair2.jpg",
+                description: "Architectural lines converge in this study of urban forms. The high contrast of Kodak Tri-X film brings out the dramatic interplay between structure and sky.",
+                collection: "shreecollab"
+            },
+            {
+                id: 3,
+                title: "Pair II-I",
+                price: "$30",
+                image: "images/pair3.jpg",
+                description: "Dawn breaks over a quiet landscape, captured in the soft grain of film. This limited edition print celebrates the magic hour in its purest form.",
+                collection: "shreecollab"
+            },
+            {
+                id: 4,
+                title: "Pair II-II",
+                price: "$30",
+                image: "images/pair4.jpg",
+                description: "A moment of introspection frozen in time. The medium format negative provides exceptional detail and tonal range in this intimate portrait.",
+                collection: "shreecollab"
+            },
+            {
+                id: 5,
+                title: "Pair III-I",
+                price: "$25",
+                image: "images/pair5.jpg",
+                description: "Candid street photography at its finest. This print captures the raw energy and spontaneity of urban life through the lens of analog film.",
+                collection: "shreecollab"
+            },
+            {
+                id: 6,
+                title: "Pair III-II",
+                price: "$25",
+                image: "images/pair6.jpg",
+                description: "Long exposure on film creates a dreamlike quality in this seascape. The silver halide crystals render water and sky in otherworldly tones.",
+                collection: "shreecollab"
+            },
+            {
+                id: 7,
+                title: "Pair IV-I",
+                price: "$25",
+                image: "images/pair7.jpg",
+                description: "An exploration of architectural details and the stories they tell. Shot on a vintage medium format camera for maximum clarity and depth.",
+                collection: "shreecollab"
+            },
+            {
+                id: 8,
+                title: "Pair IV-II",
+                price: "$25",
+                image: "images/pair8.jpg",
+                description: "Nature's patterns emerge through the organic grain of film. This woodland scene invites viewers into a world of texture and mystery.",
+                collection: "shreecollab"
+            },
+            {
+                id: 9,
+                title: "Draupadi I",
+                price: "$45",
+                image: "images/draupadi1.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 10,
+                title: "Draupadi II",
+                price: "$45",
+                image: "images/draupadi2.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 11,
+                title: "Draupadi III",
+                price: "$45",
+                image: "images/draupadi3.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 12,
+                title: "Kannagi I",
+                price: "$45",
+                image: "images/kannagi1.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 13,
+                title: "Kannagi II",
+                price: "$45",
+                image: "images/kannagi2.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 14,
+                title: "Kannagi III",
+                price: "$45",
+                image: "images/kannagi3.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 15,
+                title: "Amba I",
+                price: "$45",
+                image: "images/amba1.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 16,
+                title: "Amba II",
+                price: "$45",
+                image: "images/amba2.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 17,
+                title: "Amba III",
+                price: "$45",
+                image: "images/amba3.jpg",
+                description: "",
+                collection: "aditicollab"
+            },
+            {
+                id: 18,
+                title: "Alangaram I",
+                price: "$45",
+                image: "images/alangaram1.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 19,
+                title: "Alangaram II",
+                price: "$45",
+                image: "images/alangaram2.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 20,
+                title: "Alangaram III",
+                price: "$45",
+                image: "images/alangaram3.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 21,
+                title: "Alangaram IV",
+                price: "$45",
+                image: "images/alangaram4.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 22,
+                title: "Portraits of New York I",
+                price: "$30",
+                image: "images/landscape3.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 23,
+                title: "Portraits of New York II",
+                price: "$30",
+                image: "images/landscape4.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 24,
+                title: "Portraits of New York III",
+                price: "$30",
+                image: "images/landscape5.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 25,
+                title: "Portraits of New York IV",
+                price: "$30",
+                image: "images/landscape6.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 26,
+                title: "Portraits of New York V",
+                price: "$30",
+                image: "images/landscape1.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 27,
+                title: "Portraits of New York VI",
+                price: "$30",
+                image: "images/landscape2.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 28,
+                title: "Portraits of New York VII",
+                price: "$30",
+                image: "images/landscape7.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 29,
+                title: "Portraits of New York VIII",
+                price: "$30",
+                image: "images/landscape8.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 30,
+                title: "Portraits of New York IX",
+                price: "$30",
+                image: "images/landscape9.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 32,
+                title: "",
+                price: "",
+                image: "images/kinetics1.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 33,
+                title: "",
+                price: "",
+                image: "images/kinetics2.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 34,
+                title: "",
+                price: "",
+                image: "images/kinetics3.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 35,
+                title: "",
+                price: "",
+                image: "images/kinetics4.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 36,
+                title: "",
+                price: "",
+                image: "images/kinetics5.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 37,
+                title: "",
+                price: "",
+                image: "images/kinetics6.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 38,
+                title: "",
+                price: "",
+                image: "images/kinetics7.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 39,
+                title: "",
+                price: "",
+                image: "images/kinetics8.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 40,
+                title: "",
+                price: "",
+                image: "images/anjali1.jpg",
+                description: "",
+                collection: "dance"
+            },
+            {
+                id: 41,
+                title: "Azhagi",
+                price: "$45",
+                image: "images/azhagi.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 42,
+                title: "Azhagan",
+                price: "$45",
+                image: "images/azhagan.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 43,
+                title: "",
+                price: "",
+                image: "images/pooja1.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 44,
+                title: "",
+                price: "",
+                image: "images/shreya1.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 45,
+                title: "",
+                price: "",
+                image: "images/shreya2.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 46,
+                title: "",
+                price: "",
+                image: "images/anamica1.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 47,
+                title: "",
+                price: "",
+                image: "images/jahnavi1.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 48,
+                title: "",
+                price: "",
+                image: "images/riya1.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 49,
+                title: "",
+                price: "",
+                image: "images/riya2.jpg",
+                description: "",
+                collection: "private"
+            },
+            {
+                id: 50,
+                title: "tanya1",
+                price: "",
+                image: "images/tanya1.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 51,
+                title: "",
+                price: "",
+                image: "images/tanya2.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 52,
+                title: "",
+                price: "",
+                image: "images/tanya3.jpg",
+                description: "",
+                collection: "noshoes"
+            },
+            {
+                id: 53,
+                title: "Devadasi I",
+                price: "$30",
+                image: "images/devadasi1.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 54,
+                title: "Devadasi II",
+                price: "$30",
+                image: "images/devadasi2.jpg",
+                description: "",
+                collection: "misc"
+            },
+            {
+                id: 55,
+                title: "Devadasi III",
+                price: "$30",
+                image: "images/devadasi3.jpg",
+                description: "",
+                collection: "misc"
+            },
+        ];
+
+        let currentCollection = 'all';
+
+        // Populate gallery based on collection
+        function populateGallery(collection = 'all') {
+            const gallery = document.getElementById('gallery');
+            const filteredData = collection === 'all' 
+                ? galleryData.filter(item => item.collection !== 'private')
+                : galleryData.filter(item => item.collection === collection);
+            
+            gallery.innerHTML = filteredData.map(item => {
+                const isPrivate = item.collection === 'private';
+                const clickHandler = isPrivate ? '' : `onclick="openModal(${item.id})"`;
+                const cursorStyle = isPrivate ? 'style="cursor: default;"' : '';
+                
+                return `
+                    <div class="gallery-item" ${clickHandler} ${cursorStyle}>
+                        <div class="image-wrapper">
+                            <img src="${item.image}" alt="${item.title}">
+                        </div>
+                        ${!isPrivate ? `
+                        <div class="item-details">
+                            <div class="item-title">${item.title}</div>
+                            <div class="item-price">${item.price}</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Modal functions
+        function openModal(id) {
+            const item = galleryData.find(i => i.id === id);
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').textContent = item.title;
+            document.getElementById('modalPrice').textContent = item.price;
+            document.getElementById('modalDescription').textContent = item.description;
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectSize(element) {
+            document.querySelectorAll('.size-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function handlePurchase() {
+            const selectedSize = document.querySelector('.size-option.selected');
+            if (!selectedSize) {
+                alert('Please select a size before purchasing.');
+                return;
+            }
+            // Here you would integrate with PayPal
+            alert('PayPal integration will be connected here. Selected size: ' + selectedSize.textContent);
+            // Example: window.location.href = 'your-paypal-checkout-url';
+        }
+
+        // Inquiry functions
+        function openInquiry() {
+            document.getElementById('inquiryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInquiry() {
+            document.getElementById('inquiryModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleInquiry(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Create mailto link
+            const subject = encodeURIComponent(`Inquiry: ${data.inquiryType}`);
+            const body = encodeURIComponent(
+                `Name: ${data.name}\nEmail: ${data.email}\n\nInquiry Type: ${data.inquiryType}\n\nMessage:\n${data.message}`
+            );
+            
+            // Replace 'your-email@example.com' with your actual email
+            window.location.href = `mailto:vizhibysona@gmail.com?subject=${subject}&body=${body}`;
+            
+            closeInquiry();
+            event.target.reset();
+        }
+
+        // Close modals on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeInquiry();
+            }
+        });
+
+        // Initialize gallery on page load
+        populateGallery();
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter gallery
+                const collection = this.getAttribute('data-collection');
+                currentCollection = collection;
+                populateGallery(collection);
+            });
+        });
+    </script>
+</body>
+</html>
