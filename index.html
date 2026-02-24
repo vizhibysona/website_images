@@ -1700,7 +1700,7 @@ Thank you!`
         function populateGallery(collection = 'all') {
             const gallery = document.getElementById('gallery');
             const filteredData = collection === 'all' 
-                ? galleryData.filter(item => item.collection !== 'private')
+                ? galleryData.filter(item => item.collection !== 'private' && item.collection !== 'dance')
                 : galleryData.filter(item => item.collection === collection);
             
             gallery.innerHTML = filteredData.map(item => {
